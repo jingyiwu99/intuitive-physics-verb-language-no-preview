@@ -726,7 +726,7 @@ function handleVideoEnded() {
         if (count >= 1) {
             $(".button-pair").show();
             $("#expYesBtn, #expNoBtn").fadeIn().prop("disabled", false).removeClass("inactive");
-            $("#expTestingGuideline").text("Does this video belong to the same category as the video in the first session?");
+            $("#expTestingGuideline").text("Does the action described in this sentence belong to the same category as the actions in the first session?");
 
             // Fix: Use ExperimentTasks instead of undefined 'test'
             if (ExperimentTasks.thisTrial) {
