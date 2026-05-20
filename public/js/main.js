@@ -596,75 +596,69 @@ function show_experiment_testing() {
 
 
 function renderTrialScreen(phase, last, thisTrial, nextTrial, stimPath) {
-    // For LEARNING phase
+
+    // Hide all boxes first
+    $("#expLearningBox, #expTestingBox, #expReviewBox").hide();
+
+    // -------------------------
+    // LEARNING phase
+    // -------------------------
     if (phase === "learning") {
-        const videoPath = stimPath + thisTrial.file;
-        $("#expLearningVid").attr("src", videoPath);
+        const sentence = thisTrial.file;
 
+        $("#expLearningSentence").text(sentence);
         $("#expLearningBox").show();
-        $("#expTestingBox").hide();
 
-        // Reset play count
-        const $vid = $("#expLearningVid");
-        $vid.data("playCount", 0);
-        $vid[0].load();
+        // Show Next button
+        $("#expLearningNextBtn")
+            .show()
+            .prop("disabled", false)
+            .removeClass("inactive")
+            .off("click")
+            .on("click", function () {
+                ExperimentTasks.end("NA");
+            });
 
-        // Set up click + end handlers
-        $vid.off("click").on("click", handleVideoClick);
-        $vid.off("ended").on("ended", handleVideoEnded);
-
-        $("#expLearningNextBtn").hide();
-        $("#expLearningNextBtn").off("click").on("click", function () {
-            ExperimentTasks.end("NA");
-        });
-
-        const current = ExperimentTasks.trialNum;
+        // Learning progress
+        const current = ExperimentTasks.trialNum;  // 1-based
         const total = ExperimentTasks.totalLearningTrials;
         $("#expLearningProgress").text(`${current} / ${total}`);
     }
 
-    // For TESTING phase
+    // -------------------------
+    // TESTING phase
+    // -------------------------
     else if (phase === "testing") {
-        const videoPath = stimPath + thisTrial.file;
-        $("#expTestingVid").attr("src", videoPath);
+        const sentence = thisTrial.file;
 
+        $("#expTestingSentence").text(sentence);
         $("#expTestingBox").show();
-        $("#expLearningBox").hide();
 
-        // Reset play count
-        const $vid = $("#expTestingVid");
-        $vid.data("playCount", 0);
-        $vid[0].load();
+        // Show response buttons
+        $(".button-pair").show();
 
-        // 🎯 BUFFER NEXT VIDEO IN TESTING PHASE
-        if (nextTrial) {
-            const nextVideoPath = stimPath + nextTrial.file;
-            const bufferElement = document.getElementById('testingBufferVid');
-            buffer_video(bufferElement, nextVideoPath);
+        $("#expYesBtn, #expNoBtn")
+            .show()
+            .prop("disabled", false)
+            .removeClass("inactive")
+            .off("click")
+            .on("click", function () {
+                const response = $(this).attr("data-response");
+
+                // Prevent double-click responses
+                $("#expYesBtn, #expNoBtn")
+                    .prop("disabled", true)
+                    .addClass("inactive");
+
+                ExperimentTasks.end(response);
+            });
+
+        // Start timing
+        if (ExperimentTasks.thisTrial) {
+            ExperimentTasks.thisTrial.startTime = Date.now();
         }
 
-        // Make sure video doesn't autoplay
-        $vid[0].pause();
-        $vid.prop('autoplay', false);
-
-        // Set up click + end handlers
-        $vid.off("click").on("click", handleVideoClick);
-        $vid.off("ended").on("ended", handleVideoEnded);
-
-        // Hide response buttons until video ends
-        $(".button-pair").hide();
-        $("#expYesBtn, #expNoBtn").hide().prop("disabled", true).addClass("inactive");
-
-        // ALWAYS reset guideline to initial text for each new video
-        $("#expTestingGuideline").text("Click the video to play");
-
-        // Set up response button handlers
-        $("#expYesBtn, #expNoBtn").off("click").on("click", function () {
-            const response = $(this).attr("data-response");
-            ExperimentTasks.end(response);
-        });
-
-        // Calculate progress for testing phase
+        // Testing progress
         const current = ExperimentTasks.trialNum - ExperimentTasks.totalLearningTrials;
         const total = ExperimentTasks.totalTestingTrials;
         $("#expTestingProgress").text(`${current} / ${total}`);
