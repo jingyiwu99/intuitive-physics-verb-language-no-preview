@@ -98,40 +98,21 @@
 <!--======== EXPERIMENT LEARNING ========-->
 <div class = 'page-box' id="expLearningBox" style="display: none;">
     <p class="progress-bar" id="expLearningProgress"></p>
-    <p class="guidelines" id="expLearningGuideline">Click the video to play</p>
-    <video class="vid" muted id="expLearningVid">
-        <source type="video/mp4">
-    </video>
+    <!--    <p class="guidelines" id="expLearningGuideline">Click the video to play</p>-->
+    <p class="sentence" muted id="expLearningSentence"></p>
     <button class="button" id="expLearningNextBtn" style="display: none;">Next</button>
 </div>
-
-<!--&lt;!&ndash;======== EXPERIMENT REVIEW ========&ndash;&gt;-->
-<!--<div class = 'page-box' id="expReviewBox" style="display: none;">-->
-<!--    <p class="progress-bar" id="expReviewProgress"></p>-->
-<!--    <p class="guidelines" id="expReviewGuideline">Click the video to play</p>-->
-<!--    <video class="vid" muted id="expReviewVid">-->
-<!--        <source type="video/mp4">-->
-<!--    </video>-->
-<!--    <button class="button" id="expReviewNextBtn" style="display: none;">Next</button>-->
-<!--</div>-->
 
 <!--======== EXPERIMENT TESTING ========-->
 <div class = 'page-box' id="expTestingBox" style="display: none;">
     <p class="progress-bar" id="expTestingProgress"></p>
-    <p class="guidelines" id="expTestingGuideline">Click the video to play</p>
-    <video class="vid" muted id="expTestingVid">
-        <source type="video/mp4">
-    </video>
+    <p class="guidelines" id="expTestingGuideline">Does this action described in the sentence belong to the same group as the first session?</p>
+    <p class="sentence" id="expTestingSentence"></p>
     <div class="button-pair" style="display: none;">
         <button id="expYesBtn" data-response="1" class="button">Yes</button>
         <button id="expNoBtn" data-response="0" class="button">No</button>
     </div>
 </div>
-
-<!-- Hidden video elements for buffering -->
-<video id="learningBufferVid" style="display:none;" preload="auto" muted></video>
-<video id="reviewBufferVid" style="display:none;" preload="auto" muted></video>
-<video id="testingBufferVid" style="display:none;" preload="auto" muted></video>
 
 <!--======== DEBRIEFING QUESTIONS ========-->
 <div class='page-box' id='questions-box'>
