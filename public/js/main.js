@@ -7,7 +7,7 @@
 // ######## ##     ## ##           ##
 
 // data saving
-const FORMAL = true;
+const FORMAL = false;
 const EXPERIMENT_NAME = 'VerbCategorization';
 const SUBJ_NUM_SCRIPT = '/get-subject-number';
 const SAVING_SCRIPT = '/save-data';
@@ -23,7 +23,9 @@ const COMPLETION_URL = 'https://app.prolific.com/submissions/complete?cc=CDAFVRN
 
 // stimuli
 const STIM_PATH = 'media/';
-const PRACTICE_LEARNING_LIST = ['practice_learning_cat.jpg'];
+const PRACTICE_LEARNING_LIST = [
+    'practice_learning_cat.jpg', 'practice_learning_cat2.jpg', 'practice_learning_panda.jpg',
+    'practice_learning_panda2.jpg', 'practice_learning_horse.jpg', 'practice_learning_horse2.jpg',];
 const PRACTICE_TESTING_LIST = [
     { file: "practice_testing_tiger.jpg", correct: "yes" },
     { file: "practice_testing_tiger2.jpg", correct: "yes" },
@@ -37,32 +39,52 @@ const PRACTICE_TESTING_LIST = [
 
 const EXPERIMENT_VIDEOS = {
     class1: {
-        lift: ["class_1/class1_lift_1.mp4", "class_1/class1_lift_2.mp4", "class_1/class1_lift_3.mp4", "class_1/class1_lift_4.mp4"],
-        lower: ["class_1/class1_lower_1.mp4", "class_1/class1_lower_2.mp4", "class_1/class1_lower_3.mp4", "class_1/class1_lower_4.mp4"],
-        pull: ["class_1/class1_pull_1.mp4", "class_1/class1_pull_2.mp4", "class_1/class1_pull_3.mp4", "class_1/class1_pull_4.mp4"],
-        push: ["class_1/class1_push_1.mp4", "class_1/class1_push_2.mp4", "class_1/class1_push_3.mp4", "class_1/class1_push_4.mp4"],
-        tote: ["class_1/class1_tote_1.mp4", "class_1/class1_tote_2.mp4", "class_1/class1_tote_3.mp4", "class_1/class1_tote_4.mp4"]
+        lift: ["Alex lifts a stack of towels to the shelf.", "Anna lifts a dumbbell to her shoulder.",
+            "Brian lifts a box with both hands.", "Emily lifts a plastic bag from the table."],
+        lower: ["David lowers a cup onto the table.", "Grace lowers a bowl by the rim.",
+            "Eric lowers a bag from the counter.", "Jessica lowers a stuffed animal a few inches."],
+        pull: ["Jason pulls the door open.", "Laura pulls a loose thread from her sweater.",
+            "Kevin pulls the laptop closer.", "Megan pulls luggage across the hallway."],
+        push: ["Mark pushes a wheeled chair across the room.", "Rachel pushes a pile of clothes to the other side.",
+            "Nathan pushes a stack of hardcover books farther.", "Sarah pushes the door with her elbow."],
+        tote: ["Ryan totes a heavy backpack across the street.", "Tina totes a bulky shopping bag to the car.",
+            "Thomas totes a bucket filled with water a few steps.", "Vanessa totes a stuffed bag by its handles."]
     },
     class2: {
-        flick: ["class_2/class2_flick_1.mp4", "class_2/class2_flick_2.mp4", "class_2/class2_flick_3.mp4", "class_2/class2_flick_4.mp4"],
-        kick: ["class_2/class2_kick_1.mp4", "class_2/class2_kick_2.mp4", "class_2/class2_kick_3.mp4", "class_2/class2_kick_4.mp4"],
-        shove: ["class_2/class2_shove_1.mp4", "class_2/class2_shove_2.mp4", "class_2/class2_shove_3.mp4", "class_2/class2_shove_4.mp4"],
-        slide: ["class_2/class2_slide_1.mp4", "class_2/class2_slide_2.mp4", "class_2/class2_slide_3.mp4", "/class_2/class2_slide_4.mp4"],
-        throw: ["class_2/class2_throw_1.mp4", "class_2/class2_throw_2.mp4", "class_2/class2_throw_3.mp4", "class_2/class2_throw_4.mp4"]
+        flick: ["Anna flicks a bread crumb with her fingers.", "Alex flicks a marble across the floor.",
+            "Brian flicks a piece of dirt off his shirt.", "Emily flicks a small crumpled paper ball toward the trash bin."],
+        kick: ["David kicks the soccer ball across the field.", "Grace kicks an inflatable ball into the air.",
+            "Eric kicks an empty bottle under the bench.", "Jessica kicks the door ajar."],
+        shove: ["Jason shoves a shopping cart toward the entrance.", "Laura shoves the heavy gate open.",
+            "Kevin shoves the punching bag against the wall.", "Megan shoves a freestanding sign over."],
+        slide: ["Mark slides a notebook across a table.", "Rachel slides an ice cube to the edge of the table.",
+            "Nathan slides a pen into the box.", "Sarah slides a bar of soap next to the sink."],
+        throw: ["Ryan throws a notebook into his backpack.", "Tina throws a tea bag away.",
+            "Thomas throws the paper airplane across the room.", "Vanessa throws glitter with both hands."]
     },
     class3:{
-        fasten: ["class_3/class3_fasten_1.mp4", "class_3/class3_fasten_2.mp4", "class_3/class3_fasten_3.mp4", "class_3/class3_fasten_4.mp4"],
-        pin: ["class_3/class3_pin_1.mp4", "class_3/class3_pin_2.mp4", "class_3/class3_pin_3.mp4", "class_3/class3_pin_4.mp4"],
-        stick: ["class_3/class3_stick_1.mp4", "class_3/class3_stick_2.mp4", "class_3/class3_stick_3.mp4", "class_3/class3_stick_4.mp4"],
-        strap: ["class_3/class3_strap_1.mp4", "class_3/class3_strap_2.mp4", "class_3/class3_strap_3.mp4", "class_3/class3_strap_4.mp4"],
-        tape: ["class_3/class3_tape_1.mp4", "class_3/class3_tape_2.mp4", "class_3/class3_tape_3.mp4", "class_3/class3_tape_4.mp4"]
+        fasten: ["Anna fastens the straps of the helmet under her chin.", "Alex fastens the seat belt securely.",
+            "Brian fastens the top of the trash bag shut.", "Emily fastens an apron around her waist."],
+        pin: ["David pins the extra fabric tightly.", "Grace pins a sheet of paper with a thumbtack.",
+            "Eric pins a name tag to his shirt.", "Jessica pins the photos on the bulletin board."],
+        stick: ["Jason sticks the sticker on the cover of the notebook.", "Laura sticks a playing card to her forehead.",
+            "Kevin sticks an adhesive hook to the wall.", "Megan sticks a Post-it note on the screen."],
+        strap: ["Mark straps a suitcase with a luggage strap.", "Rachel straps a stuffed animal to a chair.",
+            "Nathan straps a pile of books together.", "Sarah straps a box on."],
+        tape: ["Ryan tapes a piece of paper to the wall.", "Tina tapes a small box closed.",
+            "Thomas tapes a torn page back into the damaged notebook.", "Vanessa tapes a leaf with clear tape."]
     },
     class4: {
-        chip: ["class_4/class4_chip_1.mp4", "class_4/class4_chip_2.mp4", "class_4/class4_chip_3.mp4", "class_4/class4_chip_4.mp4"],
-        crush: ["class_4/class4_crush_1.mp4", "class_4/class4_crush_2.mp4", "class_4/class4_crush_3.mp4", "class_4/class4_crush_4.mp4"],
-        rip: ["class_4/class4_rip_1.mp4", "class_4/class4_rip_2.mp4", "class_4/class4_rip_3.mp4", "class_4/class4_rip_4.mp4"],
-        shatter: ["class_4/class4_shatter_1.mp4", "class_4/class4_shatter_2.mp4", "class_4/class4_shatter_3.mp4", "class_4/class4_shatter_4.mp4"],
-        snap: ["class_4/class4_snap_1.mp4", "class_4/class4_snap_2.mp4", "class_4/class4_snap_3.mp4", "class_4/class4_snap_4.mp4"]
+        chip: ["Alex chips a piece off the chocolate bar.", "Anna chips the wood with a chisel.",
+            "Brian chips plaster onto the table.", "Emily chips the stone block to pieces."],
+        crush: ["David crushes an empty can completely.", "Grace crushes a cracker on the plate.",
+            "Eric crushes a paper cup with his foot.", "Jessica crushes origami into a crumpled ball."],
+        rip: ["Jason rips a sheet of paper in half.", "Laura rips a piece of cloth with both hands.",
+            "Kevin rips an envelope along the perforated line.", "Megan rips petals off of a flower."],
+        shatter: ["Mark shatters a vase by accident.", "Rachel shatters a mirror against the wall.",
+            "Nathan shatters a glass bottle with great force.", "Sarah shatters a porcelain spoon into pieces."],
+        snap: ["Ryan snaps a chopstick in anger.", "Tina snaps a stick with both hands.",
+            "Thomas snaps a cookie in half.", "Vanessa snaps a piece of bread in two."]
     }
 };
 
@@ -100,9 +122,9 @@ const INTERTRIAL_INTERVAL = 0.5;
 const INSTR_IMG_LIST = ['maximize_window.png'];
 const ALL_IMG_LIST = PRACTICE_LEARNING_LIST.concat(PRACTICE_TESTING_LIST).concat(INSTR_IMG_LIST);
 
-PracticeLearningTrials = 1
+PracticeLearningTrials = 6
 PracticeTestingTrials = 8
-ExpLearningTrials = 1
+ExpLearningTrials = 6
 ExpTestingNumber = 17
 
 
@@ -126,10 +148,10 @@ $(document).ready(function() {
     subj = new Subject(subj_options);
     subj.id = subj.getID(ID_GET_VARIABLE_NAME);
     console.log(subj.id);
-    // if (!subj.id) {
-    //     subj.id = 'testuser';
-    //     subj.validID = true;
-    // }// if part is for testing on local server, needed to be removed later
+    if (!subj.id) {
+        subj.id = 'testuser';
+        subj.validID = true;
+    }// if part is for testing on local server, needed to be removed later
 
     subj.saveVisit();
     if (subj.phone) {
@@ -310,11 +332,11 @@ INSTRUCTIONS[1] =  [show_maximize_image, enter_fullscreen, "For this experiment 
 INSTRUCTIONS[2] = [hide_instr_img, show_no_music_image, "Please also turn off any music you are playing. Music is known to affect this kind of studies, and it will make your data unusable."];
 INSTRUCTIONS[3] = [hide_instr_img, show_consent, "You can press SPACE to start. Please focus after you start. (Don\'t switch to other windows or tabs!)"];
 INSTRUCTIONS[4] = [false, false, "We'll show you some instructions in the next few pages.<br /><br />Please read carefully, and avoid using the refresh or back buttons."];
-INSTRUCTIONS[5] = [false, false, "Your task is to first watch "+ ExpLearningTrials +" action from a category.<br /><br />Then, you will watch a new set of actions and decide whether each one belongs to the same category as the first action."];
+INSTRUCTIONS[5] = [false, false, "Your task is to first watch "+ ExpLearningTrials +" descriptions of actions from the same category.<br /><br />Then, you will read a new set of descriptions and decide whether each one belongs to the same category as the first "+ ExpLearningTrials +" descriptions."];
 INSTRUCTIONS[6] = [false, false, "The whole experiment will take around 10 minutes.<br /><br />To help you get familiar with the task, you'll first complete a short practice round."];
 //practice phase
-INSTRUCTIONS[7] = [false, false, "During the practice, you will see " + PracticeLearningTrials +" image first."];
-INSTRUCTIONS[8] = [false, false, "This image is one example from a category.<br /><br />This exact image will not appear again during the later categorization task."]
+INSTRUCTIONS[7] = [false, false, "During the practice, you will see " + PracticeLearningTrials +" images first."];
+INSTRUCTIONS[8] = [false, false, "These images are from the same category.<br /><br />These images will not appear again during the later categorization task."]
 INSTRUCTIONS[9] = [show_practice_learning, false, ""];
 INSTRUCTIONS[10] = [false, false, "Then, you will see some new images, one at a time."];
 INSTRUCTIONS[11] = [false, false, "Click \"Yes\" if you think the picture belongs to the same category as the first image.<br /><br />Click \"No\" if you think it does not."]
@@ -324,14 +346,14 @@ INSTRUCTIONS[14] = [false, false, "Well done! You understand the categorization 
 INSTRUCTIONS[15] = [false, false, "Remember: The category from the practice is just for learning.<br /><br />It has no relevance to the actual experiment."];
 // Main Experiment
 INSTRUCTIONS[16] = [false, false, "The real experiment  consists of two sessions."];
-INSTRUCTIONS[17] = [false, false, "In the first session, you will watch "+ ExpLearningTrials +" video showing a person performing an action."];
-INSTRUCTIONS[18] = [false, false, "Click the video to play it, and click \"Next\" to continue.<br /><br />You can play each video up to three times."];
-INSTRUCTIONS[19] = [false, false, "This video is one example from a category.<br /><br />Please pay attention to what kind of event it represents."];
-INSTRUCTIONS[20] = [false, false, "This exact video will not appear again during the second session."];
-INSTRUCTIONS[21] = [false, false, "Now, let's begin by watching the first video."];
+INSTRUCTIONS[17] = [false, false, "In the first session, you will read "+ ExpLearningTrials +" descriptions of actions that belong to the same category."];
+INSTRUCTIONS[18] = [false, false, "Please read the descriptions carefully, and click \"Next\" to continue."];
+INSTRUCTIONS[19] = [false, false, "Pay attention to the commonness of these actions described in the sentences &mdash; this will help your categorization later."];
+INSTRUCTIONS[20] = [false, false, "These sentences will not appear again during the second session."];
+INSTRUCTIONS[21] = [false, false, "Now, let's begin by reading the first sentence."];
 INSTRUCTIONS[22] = [show_experiment_learning, false, ""];
-INSTRUCTIONS[23] = [false, false, "In the second session, you will watch " + ExpTestingNumber + " trials.<br /><br />Also, each video can be played up to three times."];
-INSTRUCTIONS[24] = [false, false, "You need to decide whether each new video belongs to the same category as the first video you just saw."];
+INSTRUCTIONS[23] = [false, false, "In the second session, you will read some new descriptions of actions."];
+INSTRUCTIONS[24] = [false, false, "You need to decide whether each new sentence describes an action that belongs to the same category as the six sentences you just saw."];
 INSTRUCTIONS[25] = [show_experiment_testing, false, ""];
 
 
