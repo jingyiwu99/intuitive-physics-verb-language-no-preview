@@ -332,7 +332,7 @@ INSTRUCTIONS[1] =  [show_maximize_image, enter_fullscreen, "For this experiment 
 INSTRUCTIONS[2] = [hide_instr_img, show_no_music_image, "Please also turn off any music you are playing. Music is known to affect this kind of studies, and it will make your data unusable."];
 INSTRUCTIONS[3] = [hide_instr_img, show_consent, "You can press SPACE to start. Please focus after you start. (Don\'t switch to other windows or tabs!)"];
 INSTRUCTIONS[4] = [false, false, "We'll show you some instructions in the next few pages.<br /><br />Please read carefully, and avoid using the refresh or back buttons."];
-INSTRUCTIONS[5] = [false, false, "Your task is to first watch "+ ExpLearningTrials +" descriptions of actions from the same category.<br /><br />Then, you will read a new set of descriptions and decide whether each one belongs to the same category as the first "+ ExpLearningTrials +" descriptions."];
+INSTRUCTIONS[5] = [false, false, "Your task is to first read "+ ExpLearningTrials +" descriptions of actions from the same category.<br /><br />Then, you will read a new set of descriptions and decide whether each one belongs to the same category as the first "+ ExpLearningTrials +" descriptions."];
 INSTRUCTIONS[6] = [false, false, "The whole experiment will take around 10 minutes.<br /><br />To help you get familiar with the task, you'll first complete a short practice round."];
 //practice phase
 INSTRUCTIONS[7] = [false, false, "During the practice, you will see " + PracticeLearningTrials +" images first."];
@@ -569,7 +569,7 @@ function show_experiment_learning() {
     ExperimentTasks.run();
     $("#instr-box").hide();
     $("#expLearningBox").show();       // show learning phase container
-    // $("#expReviewBox").hide();
+    $("#expReviewBox").hide();
     $("#expTestingBox").hide();
 }
 
@@ -589,8 +589,8 @@ function show_experiment_learning() {
 
 function show_experiment_testing() {
     $("#instr-box").hide();
-    // $("#expLearningBox, #expReviewBox").hide();
-    $("#expLearningBox").hide();
+    $("#expLearningBox, #expReviewBox").hide();
+    // $("#expLearningBox").hide();
     ExperimentTasks.run();
 }
 
