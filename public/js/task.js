@@ -105,7 +105,7 @@ class Task {
         this.testingList.push({
             phase: 'testing',
             verb: 'attention_check',
-            file: 'check.mp4',
+            file: 'The person transforms into a butterfly and flies away.',
             label: 'check'
         });
 
@@ -234,7 +234,7 @@ class Task {
     //     this.testingList.push({
     //         phase: 'testing',
     //         verb: 'attention_check',
-    //         file: 'check.mp4',
+    //         file: 'The person transforms into a butterfly and flies away.',
     //         label: 'check'
     //     });
     //
@@ -367,7 +367,7 @@ class Task {
     //     this.testingList.push({
     //         phase: 'testing',
     //         verb: 'attention_check',
-    //         file: 'check.mp4',
+    //         file: 'The person transforms into a butterfly and flies away.',
     //         label: 'check'
     //     });
     //
@@ -497,7 +497,7 @@ class Task {
     //     this.testingList.push({
     //         phase: 'testing',
     //         verb: 'attention_check',
-    //         file: 'check.mp4',
+    //         file: 'The person transforms into a butterfly and flies away.',
     //         label: 'check'
     //     });
     //
